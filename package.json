@@ -1,0 +1,52 @@
+{
+  "name": "covfefe-api",
+  "version": "0.0.1",
+  "description": "The API for the covfefe app.",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm test",
+    "build": "tsc",
+    "rebuild": "npx rimraf bin && npm run build",
+    "start": "npm run build && node bin/index.js"
+  },
+  "dependencies": {
+    "tslib": "^2.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^12.12.47",
+    "@typescript-eslint/eslint-plugin": "^3.2.0",
+    "@typescript-eslint/parser": "^3.2.0",
+    "eslint": "^7.2.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-plugin-jest": "^23.13.2",
+    "prettier": "^2.0.5",
+    "rimraf": "^3.0.2",
+    "tsutils": "^3.17.1",
+    "typescript": "^3.9.5"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JacobHeater/covfefe-api.git"
+  },
+  "keywords": [
+    "Coffee",
+    "Covfefe",
+    "API"
+  ],
+  "author": {
+    "email": "jacobheater@gmail.com",
+    "name": "Jacob Heater",
+    "url": "http://jacobheater.com"
+  },
+  "contributors": [
+    {
+      "name": "Benjamin Heater",
+      "email": "benheater@gmail.com"
+    }
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/JacobHeater/covfefe-api/issues"
+  },
+  "homepage": "https://github.com/JacobHeater/covfefe-api#readme"
+}
