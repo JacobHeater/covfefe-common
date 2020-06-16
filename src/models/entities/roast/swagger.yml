@@ -1,0 +1,12 @@
+components:
+  schemas:
+    Roast:
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        region:
+          $ref: '#/components/schemas/Origin'
