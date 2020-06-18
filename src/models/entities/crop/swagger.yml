@@ -1,18 +1,15 @@
 components:
   schemas:
-    Origin:
+    Crop:
       properties:
         id:
           type: string
           example: 1DiqY12zl
           readOnly: true
-        country:
-          type: string
-        estate:
-          type: string
-        altitude:
+        origin:
+          $ref: '#/components/schemas/Origin'
+        year:
           type: integer
       required:
-        - country
-        - estate
-        - altitude
+        - origin
+        - year
