@@ -1,0 +1,13 @@
+language: node_js
+node_js:
+  - 10
+  - 12
+  - 14
+  - lts/*
+install:
+  - npm install
+script:
+  - npm run rebuild
+  - npm run test
+after_script:
+  - npm run clean

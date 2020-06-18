@@ -6,7 +6,8 @@
   "scripts": {
     "test": "npx jest",
     "build": "tsc",
-    "rebuild": "npx rimraf bin && npm run build",
+    "clean": "npx rimraf bin",
+    "rebuild": "npm run clean && npm run build",
     "start": "npm run build && node bin/index.js"
   },
   "dependencies": {
