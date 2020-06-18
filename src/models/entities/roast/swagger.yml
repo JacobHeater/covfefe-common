@@ -1,12 +1,54 @@
 components:
   schemas:
+    Duration:
+      properties:
+        start:
+          type: string
+          format: date-time
+        finish:
+          type: string
+          format: date-time
+        firstCrack:
+          type: string
+          format: date-time
+        secondCrack:
+          type: string
+          format: date-time
+      required:
+        - start
+        - finish
+        - firstCrack
     Roast:
       properties:
         id:
           type: string
+          example: 1DiqY12zl
+          readOnly: true
         name:
           type: string
         description:
           type: string
-        region:
-          $ref: '#/components/schemas/Origin'
+        crop:
+          $ref: '#/components/schemas/Crop'
+        duration:
+          $ref: '#/components/schemas/Duration'
+        cuppingNotes:
+          type: array
+          items:
+            type: string
+        roastLevel:
+          type: string
+          enum:
+            - Cinnamon
+            - City
+            - City+
+            - Full City
+            - Full City+
+            - Vienna
+            - French
+      required:
+        - name
+        - description
+        - crop
+        - duration
+        - roastLevel
