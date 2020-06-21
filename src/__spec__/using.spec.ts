@@ -26,7 +26,7 @@ test('It should not throw even if the routine throws an error', async () => {
 
 test('It should return void when the routine has thrown an error', async () => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const out = await using(new TestResource(), _ => {
+  const [out] = await using(new TestResource(), _ => {
     throw new Error('Message')
   });
 

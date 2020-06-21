@@ -5,6 +5,7 @@ export class Crop extends Entity {
   origin: Origin;
   year: number;
 
+  static readonly collectionName = 'Crops';
   static isValid(crop: Crop): boolean {
     let isValid = true;
 
