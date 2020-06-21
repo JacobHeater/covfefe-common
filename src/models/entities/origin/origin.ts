@@ -12,8 +12,8 @@ export class Origin extends Entity {
   static readonly collectionName = 'Origins';
   static isValid(origin: Origin): boolean {
     return (
-      origin.country &&
-      origin.estate &&
+      !!origin.country &&
+      !!origin.estate &&
       origin.altitude > 0
     );
   }
