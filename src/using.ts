@@ -10,19 +10,19 @@ import { IDisposable } from './idisposable';
 export async function using<TIn extends IDisposable, TOut>(
   resource: TIn,
   routine: (resource: TIn) => Promise<TOut>,
-): Promise<TOut> {
+): Promise<[TOut, Error]> {
   try {
     const out = await routine(resource);
     await resource.dispose();
 
-    return out;
+    return [out, null];
   } catch (e) {
     try {
       await resource.dispose();
 
-      return void 0;
+      return [void 0, e];
     } catch (e) {
-      return void 0;
+      return [void 0, e];
     }
   }
 }
