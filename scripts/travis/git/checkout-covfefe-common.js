@@ -7,13 +7,14 @@ const isPullRequest = process.env.TRAVIS_EVENT_TYPE === 'pull_request';
 const branchName = isPullRequest
   ? process.env.TRAVIS_PULL_REQUEST_BRANCH
   : process.env.TRAVIS_BRANCH;
+const commonBranchDelimiter = '-needscommon-';
 
 console.log(`The current branch for the build is ${branchName}`);
 console.log(`Is pull request? ${isPullRequest ? 'Yes' : 'No'}`);
 
-if (branchName.includes('needscommon')) {
+if (branchName.includes(commonBranchDelimiter)) {
   console.log(`This build has indicated it depends on a branch from covfefe-common`);
-  const requestedBranch = branchName.split('-needs-common-')[1];
+  const requestedBranch = branchName.split(commonBranchDelimiter)[1];
   console.log(`The branch that was requested is: ${requestedBranch}`);
 
   try {
