@@ -1,4 +1,5 @@
 import { IDisposable } from './idisposable';
+import { logger } from './logging/winston';
 
 /**
  * Uses the given resource and calls the .dispose()

@@ -1,9 +1,12 @@
 import { Entity } from "../entity";
 import { Origin } from "../origin/origin";
+import { IHaveUserReference } from "../user/ihave-user-reference";
+import { User } from "../user/user";
 
-export class Crop extends Entity {
+export class Crop extends Entity implements IHaveUserReference {
   origin: Origin;
   year: number;
+  user: User;
 
   static readonly collectionName = 'Crops';
   static isValid(crop: Crop): boolean {

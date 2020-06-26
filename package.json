@@ -12,7 +12,8 @@
   },
   "dependencies": {
     "shortid": "^2.2.15",
-    "tslib": "^2.0.0"
+    "tslib": "^2.0.0",
+    "winston": "^3.3.3"
   },
   "devDependencies": {
     "@types/faker": "^4.1.12",
