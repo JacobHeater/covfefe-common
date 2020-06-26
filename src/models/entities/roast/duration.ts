@@ -7,5 +7,5 @@ export class Duration {
   start: Date;
   finish: Date;
   firstCrack: Date;
-  secondCrack: Date;
+  secondCrack?: Date;
 }
