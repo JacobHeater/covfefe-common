@@ -23,17 +23,23 @@ export const logger = winston.createLogger({
     new winston.transports.Console({
       format: winston.format.combine(
         winston.format.cli(),
-        winston.format.colorize()
-      )
+        winston.format.colorize(),
+      ),
     }),
   ],
-  exitOnError: false
+  exitOnError: false,
 });
 
-export const winstonStream: StreamWriter = {
+export const winstonHttpStream: StreamWriter = {
+  write(message: string): void {
+    logger.http(message);
+  },
+};
+
+export const winstonLogStream: StreamWriter = {
   write(message: string): void {
     logger.info(message);
-  }
+  },
 };
 
 export function setLogLevel(level: LogLevel): void {
