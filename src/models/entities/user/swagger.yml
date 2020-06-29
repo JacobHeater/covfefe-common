@@ -1,0 +1,33 @@
+components:
+  schemas:
+    Profile:
+      properties:
+        profileImage:
+          type: string
+          format: byte
+          
+    User:
+      properties:
+        id:
+          type: string
+          example: 1DiqY12zl
+          readOnly: true
+        username:
+          type: string
+        password:
+          type: string
+        isActive:
+          type: boolean
+        lastLogin:
+          type: string
+          format: date-time
+          readOnly: true
+        loginAttempts:
+          type: integer
+          readOnly: true
+        createdOn:
+          type: string
+          format: date-time
+        profile:
+          $ref: '#/components/schemas/Profile'
+        
