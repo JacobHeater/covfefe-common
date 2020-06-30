@@ -49,3 +49,20 @@ export function setLogLevel(level: LogLevel): void {
     logger.level = level;
   }
 }
+
+/**
+ * Formats an error as a string for plaintext logging.
+ * @param err The error.
+ */
+export function fmtErr(err: Error): string {
+  if (!err) return '';
+
+  const message = err.message || '';
+  const stack = err.stack || '';
+
+  return [
+    message,
+    '----------------',
+    stack
+  ].join('\n');
+}
