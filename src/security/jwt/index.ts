@@ -1,8 +1,31 @@
 /* eslint-disable @typescript-eslint/ban-types */
 import * as jwt from 'jsonwebtoken';
-import { logger, fmtErr } from '../../logging/winston';
+import { logger, fmtErr, fmtLines } from '../../logging/winston';
 
 export type JwtResult<T> = [boolean, T];
+
+export function getJwtSecret(): string {
+  // Keep this here to control the outcome of if the
+  // env var is no populated.
+  const secret = process.env.JWT_SECRET;
+
+  if (!secret) {
+    logger.error(
+      fmtLines(
+        `process.env.JWT_SECRET is not present in the environment.`,
+        `Auth tokens cannot be generated and the application must not resume.`,
+      ),
+    );
+
+    // We absolutely must throw this error, because
+    // we cannot be generating JWTs signed without
+    // a symmetric secret.
+
+    throw new Error('Tokens cannot be generated at this time.');
+  }
+
+  return secret;
+}
 
 export function generateJwtAsync(
   payload: string | object | Buffer,
