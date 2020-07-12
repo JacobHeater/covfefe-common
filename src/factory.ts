@@ -6,10 +6,10 @@
  * @param ctor The object constructor.
  * @param params The initialization params.
  */
-export function factory<T>(ctor: new () => T, params: T): T {
+export function factory<T>(ctor: new () => T, params: T | { [key: string]: unknown }): T {
   if (!ctor) throw new Error(`Argument 'ctor' is required`);
 
-  return Object.assign<T, T>(new ctor(), {
+  return Object.assign(new ctor(), {
     ...params
   });
 }

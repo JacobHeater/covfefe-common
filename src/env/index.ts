@@ -27,5 +27,9 @@ export class Environment {
     get mongoDatabaseName(): string {
       return process.env.MONGO_DEFAULT_DATABASE;
     },
+
+    get adminUserPassword(): string {
+      return process.env.MONGO_ADMIN_PASSWORD;
+    }
   };
 }
