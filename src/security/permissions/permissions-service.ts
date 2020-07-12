@@ -3,6 +3,9 @@ import { IPermitted } from './ipermitted';
 import { PermissionTarget, PermissionAction, Permission } from './permission';
 import { Role } from '../../models/entities/roles/role';
 import { IPermissionWaiver, WaiverReason } from './ipermission-waiver';
+import { ArgumentMissingError } from '../../errors/argument-missing-error';
+import { ArgumentInvalidError } from '../../errors/argument-invalid-error';
+import { UserNotPermittedError } from '../../errors/security/permissions/user-not-permitted-error';
 
 export class PermissionsService {
   isUserPermitted(
@@ -17,11 +20,16 @@ export class PermissionsService {
         reason: null,
       };
 
+    // If no waiver, and no user, then http context could not get a user.
     if (!permissionWaiver.waive && !user)
-      throw new Error(`Argument 'user' is required.`);
-    if (!resource) throw new Error(`Argument 'resource' is required.`);
+      throw new UserNotPermittedError();
+    if (!resource)
+      throw new ArgumentMissingError(`Argument 'resource' is required.`);
     if (!Array.isArray(actions))
-      throw new Error(`Argument 'actions' is expected to be of type [].`);
+      throw new ArgumentInvalidError(
+        'actions',
+        `Argument 'actions' is expected to be of type [].`,
+      );
 
     if (this.canAllowPermissionsExclusion(permissionWaiver.reason)) {
       return true;
