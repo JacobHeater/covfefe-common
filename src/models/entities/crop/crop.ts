@@ -1,7 +1,7 @@
-import { Entity } from "../entity";
-import { Origin } from "../origin/origin";
-import { IHaveUserReference } from "../user/ihave-user-reference";
-import { User } from "../user/user";
+import { Entity } from '../entity';
+import { Origin } from '../origin/origin';
+import { IHaveUserReference } from '../user/ihave-user-reference';
+import { User } from '../user/user';
 
 export class Crop extends Entity implements IHaveUserReference {
   origin: Origin;

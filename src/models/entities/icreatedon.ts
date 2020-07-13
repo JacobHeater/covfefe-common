@@ -1,3 +1,3 @@
 export interface ICreatedOn {
-  createdOn: Date;
+  createdOn?: Date;
 }

@@ -1,23 +1,15 @@
 import * as winston from 'winston';
-import { CommonEnvironment } from '../../env';
+import { Environment } from '../../env';
+import { LogLevel } from './log-level';
 
 export interface StreamWriter {
   write(message: string): void;
 }
 
-export enum LogLevel {
-  error = 'error',
-  warn = 'warn',
-  info = 'info',
-  verbose = 'verbose',
-  debug = 'debug',
-  silent = 'silent',
-}
-
 export const logger = winston.createLogger({
-  level: CommonEnvironment.logLevel,
+  level: Environment.common.logLevel,
   handleExceptions: true,
-  silent: CommonEnvironment.loggingDisabled,
+  silent: Environment.common.loggingDisabled,
   format: winston.format.json(),
   transports: [
     new winston.transports.Console({
@@ -65,4 +57,14 @@ export function fmtErr(err: Error): string {
     '----------------',
     stack
   ].join('\n');
+}
+
+/**
+ * Formats a set of strings into a concatenated
+ * string joined by a \n escape.
+ * 
+ * @param args The lines.
+ */
+export function fmtLines(...args: string[]): string {
+  return [...args].join('\n');
 }

@@ -1,5 +1,5 @@
 import { IDisposable } from './idisposable';
-import { logger } from './logging/winston';
+import { logger, fmtErr } from './logging/winston';
 
 /**
  * Uses the given resource and calls the .dispose()
@@ -18,11 +18,15 @@ export async function using<TIn extends IDisposable, TOut>(
 
     return [out, null];
   } catch (e) {
+    logger.error(fmtErr(e));
+
     try {
       await resource.dispose();
 
       return [void 0, e];
     } catch (e) {
+      logger.error(fmtErr(e));
+
       return [void 0, e];
     }
   }

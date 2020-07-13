@@ -1,23 +1,35 @@
-import { LogLevel, setLogLevel } from "../logging/winston";
+import { LogLevel } from "../logging/winston/log-level";
 
-export class CommonEnvironment {
-  static get logLevel(): LogLevel {
-    return process.env.LOG_LEVEL as LogLevel || LogLevel.error;
-  }
+export class Environment {
+  static common = {
+    get logLevel(): LogLevel {
+      return (process.env.LOG_LEVEL as LogLevel) || LogLevel.error;
+    },
 
-  static set logLevel(level: LogLevel) {
-    setLogLevel(level);
-  }
-  
-  static get loggingDisabled(): boolean {
-    return CommonEnvironment.logLevel === LogLevel.silent;
-  }
+    get loggingDisabled(): boolean {
+      return this.logLevel === LogLevel.silent;
+    },
 
-  static get isDevelopment(): boolean {
-    return process.env.NODE_ENV === 'development';
-  }
+    get isDevelopment(): boolean {
+      return process.env.NODE_ENV === 'development';
+    },
 
-  static get logStack(): boolean {
-    return this.isDevelopment;
-  }
+    get logStackTrace(): boolean {
+      return this.isDevelopment;
+    },
+  };
+
+  static db = {
+    get mongoConnectionString(): string {
+      return process.env.MONGO_CONNECTION_STRING;
+    },
+
+    get mongoDatabaseName(): string {
+      return process.env.MONGO_DEFAULT_DATABASE;
+    },
+
+    get adminUserPassword(): string {
+      return process.env.MONGO_ADMIN_PASSWORD;
+    }
+  };
 }
